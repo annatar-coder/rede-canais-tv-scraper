@@ -1,0 +1,22 @@
+{
+  "name": "rede-canais-tv-scraper",
+  "version": "1.0.0",
+  "description": "rede-canais-tv-scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeLNJunior/rede-canais-tv-scraper.git"
+  },
+  "author": "JorgeLNJunior",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JorgeLNJunior/rede-canais-tv-scraper/issues"
+  },
+  "homepage": "https://github.com/JorgeLNJunior/rede-canais-tv-scraper#readme",
+  "dependencies": {
+    "puppeteer": "^5.3.1"
+  }
+}
