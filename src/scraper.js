@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer-firefox')
 async function scraper (channel) {
   return new Promise((resolve, reject) => {
     (async () => {
-      const browser = await puppeteer.launch({ headless: true, timeout: 0, devtools: false })
+      const browser = await puppeteer.launch()
       const page = await browser.newPage()
 
       await page.goto(`https://redecanaistv.com/player3/canais.php?canal=${channel}`, {
