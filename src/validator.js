@@ -1,6 +1,6 @@
 module.exports = (channels) => {
   if (!channels) {
-    console.info('using default params')
+    console.info('using default channels')
     return
   }
   if (!Array.isArray(channels)) {
