@@ -1,24 +1,37 @@
-const puppeteer = require('puppeteer-firefox')
+const scraper = require('./scraper')
+const validator = require('./validator')
+const { defaultChannels } = require('./helpers')
 
-const scraper = async () => {
-  const browser = await puppeteer.launch({ headless: false })
-  const page = await browser.newPage()
+/**
+ *
+ * @param {Array} channels receive a array containing channel names
+ */
+async function scrape (channels) {
+  try {
+    validator(channels)
+  } catch (error) {
+    return error
+  }
 
-  await page.goto('https://redecanaistv.com/player3/canais.php?canal=discovery&img=discovery', {
-    waitUntil: 'domcontentloaded',
-    timeout: 0
-  })
+  channels = channels || defaultChannels
 
-  page.click('h2 > a')
-  await page.waitForNavigation()
+  const results = { channels: [], errors: [] }
 
-  return 'ok'
+  for (var chanel of channels) {
+    try {
+      console.info('-------------------------')
+      console.info(`iniciando canal ${chanel}`)
+      const result = await scraper(chanel)
+      results.channels.push(result)
+      console.info(`canal ${chanel} finalizado`)
+    } catch (error) {
+      console.info(`erro no canal ${chanel}`)
+      console.info('-----------------------')
+      results.errors.push(error.message)
+    }
+  }
+
+  return results
 }
 
-scraper()
-  .then((value) => {
-    console.log(value)
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+module.exports = scrape
